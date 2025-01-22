@@ -98,7 +98,7 @@ El sistema de vigilancia entomológica con ovitrampas opera en todo el país y t
 
 En el 2024, en 718 localidades se instalaron ovitrampas con la finalidad monitorear la distribución espacial y temporal de la abundancia y prevalencia de *Ae. aegypti* en las áreas metropolitanas y endémicas de la transmisión del dengue en México (Figura 4).
 
-La base de datos de la vigilancia entomológica con ovitrampas, cuenta con más de 100 millones de registros ($102,089,940$) a lo largo del periodo de estudio(2012-2024, excepto 2020, debido a que por la pandemia de COVID no se instalaron las ovitrampas)
+La base de datos de la vigilancia entomológica con ovitrampas, cuenta con más de 100 millones de registros ($102,089,940$) a lo largo del periodo de estudio (2012-2024, excepto 2020, debido a que por la pandemia de COVID 19 no se instalaron las ovitrampas)
 
 
 ```{r, echo=FALSE, fig.cap= "Figura 3. Número de estados, municipios y localidades con ovitrampas en México"}
@@ -169,7 +169,7 @@ ggplot2::ggplot(data = xy) +
 ```
 
 
-```{r, echo=FALSE, fig.cap= "Figura 4. Distribución de localidaes con ovitrampas en el 2024"}
+```{r, echo=FALSE, fig.cap= "Figura 4. Distribución de localidades con ovitrampas en el 2024"}
 # Step 1. load ovitraps (2021-2024)
 load("~/Library/CloudStorage/OneDrive-Personal/automatic_read_ovitraps/8.RData/ovitraps/ovitraps_2021_2024_for_encript.RData")
 
@@ -217,7 +217,13 @@ mapview::mapview(loc_ovitraps_coordinates,
 
 ## Bases de datos encriptadas
 
+Debido a la cantidad de registros masivos de ovitrampas, resulta muy costoso computacionalmente procesar la base de datos para su encriptación, razón por la cual solo se proporciona dos años como ejemplo y muestra de las base de datos encriptadas. 
 
+Las bases de datos encriptadas pueden accesarse a través de los siguientes enlaces:
+
+   - [ovitrap_datast_2012]()
+
+   - [ovitrap_datast_2024]()
 
 
 
