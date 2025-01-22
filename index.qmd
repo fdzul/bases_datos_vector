@@ -17,7 +17,7 @@ execute:
 
 El programa de prevención y control del dengue implementó desde el 2010 un sistema de vigilancia entomológica basado en la instalación de ovitrampas en al menos una localidad de cada estado, estos dispositivos son empleados en un muestreo sistemático carácterizado por instalar cuatro ovitrampas por manzana (una ovitrampa por cada lado de la manzana) con un intervalo de separación de cada 4 a 6 manzanas en zonas planas y con un intervalo de separación de 2 a 3 manzanas en zonas con relieve (Figura 1). Las ovitrampas se instalan en el exterior del domicilio en lugares sombreados a una altura de 1.5 metros.
 
-```{r figura1,fig.cap= "Figura 1. Ilustración del muestreo de la vigilancia entomológica con ovitrampas en México."}
+```{r, echo = FALSE,figura1,fig.cap= "Figura 1. Ilustración del muestreo de la vigilancia entomológica con ovitrampas en México."}
 #| warning: False
 #| message: False
 #| echo: true
@@ -29,7 +29,7 @@ deneggs::blocks_surveillance(locality = "Ticul",
                              path_coords = path)
 ```
 
-Las ovitrampas utilizadas en México consisten en recipientes de plástico negro con una capacidad de un litro cubierto en su superficie interior con papel pellon (F-1600), a la cual se le incorpora agua potable hasta antes de 2 cm de su borde superior (Figura 2). Semanalmente, se le retira el sustrato de ovoposición a las ovitrampas y se les cambia por un sustrato nuevo y agua. El número de huevos en la papeleta de cada ovitrampa instalada es contado y registrado. La información asociada a la papeleta (localidad, municipio, manzana, sector, fecha, colector y número de huevos) es capturado en el Módulo de Vigilancia Entomológica y Control Integral del Vector del Sistema de Monitoreo Integral de Vectores de la Secretaría de Salud Federal (http://geosis.mx/aplicaciones/sismv/). La descripción de los procesos puede encontrarse en la guía metodológica para la vigilancia entomológica con ovitrampas 12.
+Las ovitrampas utilizadas en México consisten en recipientes de plástico negro con una capacidad de un litro cubierto en su superficie interior con papel pellon (F-1600), a la cual se le incorpora agua potable hasta antes de 2 cm de su borde superior (Figura 2). Semanalmente, se le retira el sustrato de ovoposición a las ovitrampas y se les cambia por un sustrato nuevo y agua. El número de huevos en la papeleta de cada ovitrampa instalada es contado y registrado. La información asociada a la papeleta (localidad, municipio, manzana, sector, fecha, colector y número de huevos) es capturado en el Módulo de Vigilancia Entomológica y Control Integral del Vector del Sistema de Monitoreo Integral de Vectores de la Secretaría de Salud Federal (http://geosis.mx/aplicaciones/sismv/). La descripción de los procesos de instalación y monitoreo puede encontrarse en la guía metodológica para la vigilancia entomológica con ovitrampas 12.
 
 ```{=html}
 <style>
@@ -90,12 +90,18 @@ Describir brevemente las bases de datos del vector del dengue.
 
 ## Material y Métodos
 
+El proceso de la integración de las bases de datos entomológicos fue realizado en dos etapas (acceso y preprocesamiento). En la primera etapa, las bases de datos (lecturas de ovitrampas y coordenadas geográficas) de cada estado y año, fueron obtenidas en el Módulo de Vigilancia Entomológica y Control Integral del Vector del Sistema de Monitoreo Integral de Vectores de la Secretaría de Salud Federal (http://geosis.mx/aplicaciones/sismv/). Posteriormente, en la etapa de preprocesamiento se integraron en una sola base, las bases de todos los estados, se eliminaron valores nulos en la variable de respuesta (número de huevos de *Ae. aegypti*) y se garantizó que todas las covariables tuvieran un formato acorde al dato. 
+
 ## Resultados
 
-El sistema de vigilancia entomológica con ovitrampas opera en todo el país y todos los estados han instalado la vigilancia entomológica con ovitrampas en al menos una localidad, excepto el estado de tlaxcala (Figura 3, Figura 4). 
+El sistema de vigilancia entomológica con ovitrampas opera en todo el país y todos los estados han instalado la vigilancia entomológica con ovitrampas en al menos una localidad, excepto el estado de Tlaxcala (Figura 3, Figura 4). 
+
+En el 2024, en 718 localidades se instalaron ovitrampas con la finalidad monitorear la distribución espacial y temporal de la abundancia y prevalencia de *Ae. aegypti* en las áreas metropolitanas y endémicas de la transmisión del dengue en México (Figura 4).
+
+La base de datos de la vigilancia entomológica con ovitrampas, cuenta con más de 100 millones de registros ($102,089,940$) a lo largo del periodo de estudio(2012-2024, excepto 2020, debido a que por la pandemia de COVID no se instalaron las ovitrampas)
 
 
-```{r echo=FALSE, fig.cap= "Numero de estado, muninicipios y localidades con ovitrampas en México"}
+```{r, echo=FALSE, fig.cap= "Figura 3. Número de estados, municipios y localidades con ovitrampas en México"}
 # Step 1.1 load ovitraps (2012-2019)
 load("~/Library/CloudStorage/OneDrive-Personal/automatic_read_ovitraps/8.RData/ovitraps/ovitraps_2012_2019_for_encript.RData")
 
@@ -163,7 +169,7 @@ ggplot2::ggplot(data = xy) +
 ```
 
 
-```{r, echo=FALSE, fig.cap= "Distribución de localidaes con ovitrampas en el 2024"}
+```{r, echo=FALSE, fig.cap= "Figura 4. Distribución de localidaes con ovitrampas en el 2024"}
 # Step 1. load ovitraps (2021-2024)
 load("~/Library/CloudStorage/OneDrive-Personal/automatic_read_ovitraps/8.RData/ovitraps/ovitraps_2021_2024_for_encript.RData")
 
@@ -209,6 +215,7 @@ mapview::mapview(loc_ovitraps_coordinates,
 ```
 
 
+## Bases de datos encriptadas
 
 
 
@@ -217,9 +224,3 @@ mapview::mapview(loc_ovitraps_coordinates,
 
 
 
-
-
-Por ejemplo, en el estado de Veracruz, el sistema esta instalado en 15 localidades: Panuco, Tuxpan, Papantla, Poza Rica, Martínez de la Torre, Xalapa, Córdoba, Orizaba, Veracruz, Alvarado, Bocal del Río, Cosamaloapan, San Andrés y Coatzacoalcos.
-
-Entre 2012 y 2019, 
-se han analizado más de 72 millones de registros de ovitrampas (72,304,515).
