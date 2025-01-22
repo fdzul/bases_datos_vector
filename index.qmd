@@ -17,8 +17,7 @@ execute:
 
 El programa de prevención y control del dengue implementó desde el 2010 un sistema de vigilancia entomológica basado en la instalación de ovitrampas en al menos una localidad de cada estado, estos dispositivos son empleados en un muestreo sistemático carácterizado por instalar cuatro ovitrampas por manzana (una ovitrampa por cada lado de la manzana) con un intervalo de separación de cada 4 a 6 manzanas en zonas planas y con un intervalo de separación de 2 a 3 manzanas en zonas con relieve (Figura 1). Las ovitrampas se instalan en el exterior del domicilio en lugares sombreados a una altura de 1.5 metros.
 
-
-```{r figura1,fig.cap= "Figura 1. Ilustración del muestreo de manzanas y ovitrampas"}
+```{r figura1,fig.cap= "Figura 1. Ilustración del muestreo de la vigilancia entomológica con ovitrampas en México."}
 #| warning: False
 #| message: False
 #| echo: true
@@ -31,7 +30,6 @@ deneggs::blocks_surveillance(locality = "Ticul",
 ```
 
 Las ovitrampas utilizadas en México consisten en recipientes de plástico negro con una capacidad de un litro cubierto en su superficie interior con papel pellon (F-1600), a la cual se le incorpora agua potable hasta antes de 2 cm de su borde superior (Figura 2). Semanalmente, se le retira el sustrato de ovoposición a las ovitrampas y se les cambia por un sustrato nuevo y agua. El número de huevos en la papeleta de cada ovitrampa instalada es contado y registrado. La información asociada a la papeleta (localidad, municipio, manzana, sector, fecha, colector y número de huevos) es capturado en el Módulo de Vigilancia Entomológica y Control Integral del Vector del Sistema de Monitoreo Integral de Vectores de la Secretaría de Salud Federal (http://geosis.mx/aplicaciones/sismv/). La descripción de los procesos puede encontrarse en la guía metodológica para la vigilancia entomológica con ovitrampas 12.
-
 
 ```{=html}
 <style>
@@ -57,31 +55,32 @@ Las ovitrampas utilizadas en México consisten en recipientes de plástico negro
 </style>
 ```
 </head>
+
 <body>
 
 ::: grid-container
-
-::: {.grid-item1}
-![](https://github.com/fdzul/deneggs/blob/master/IMG_6137.JPG?raw=true){width=98%}
+::: grid-item1
+![](https://github.com/fdzul/deneggs/blob/master/IMG_6137.JPG?raw=true){width="98%"}
 :::
 
-::: {.grid-item1}
-![](https://github.com/fdzul/deneggs/blob/master/IMG_6176.JPG?raw=true){width=98%}
+::: grid-item1
+![](https://github.com/fdzul/deneggs/blob/master/IMG_6176.JPG?raw=true){width="98%"}
 :::
 
-::: {.grid-item1}
-![](https://github.com/fdzul/deneggs/blob/master/IMG_6186.JPG?raw=true){width=98%}
+::: grid-item1
+![](https://github.com/fdzul/deneggs/blob/master/IMG_6186.JPG?raw=true){width="98%"}
 :::
 
-::: {.grid-item2}
-![](https://github.com/fdzul/deneggs/blob/master/IMG_6150.JPG?raw=true){width=98%}
+::: grid-item2
+![](https://github.com/fdzul/deneggs/blob/master/IMG_6150.JPG?raw=true){width="98%"}
 :::
 :::
 
-<figcaption>Figura 2. Ovitrampa y sustrato de ovoposición </figcaption>
+<figcaption>Figura 2. Ovitrampa y sustrato de ovoposición</figcaption>
+
 </body>
-</html>
 
+</html>
 
 En relación con la vigilancia entomovirológica, la colecta de adultos en reposo permite la detección temprana de virus en mosquitos y podría facilitar acciones tempranas y específicas de control de vectores, si se implementa y utiliza de manera oportuna. La vigilancia entomológica en la Secretaría de Salud inicio desde el 2009, cuando el InDRE (Instituto de Diagnóstico y Referencia Epidemiológicos Dr. Manuel Martínez Báez) planteó un proyecto de investigación en Morelos, Guadalajara y Guerrero. Posteriormente, con la introdución de chikungunya y Zika en México, estados como Guerrero implementaron la Vigilancia Entomovirológica en la Ciudad de Acapulco. Los resultados permitieron detectar la circulación del virus de chikungunya en Aedes aegypti con antelación a los primeros casos en humanos. El análisis retrospectivo de las muestras de RNA permitió comprobar que los virus del dengue, chikungunya y Zika circularon en mosquitos al mismo tiempo15, 16. Durante dos años consecutivos (febrero 2017 a noviembre 2018) la vigilancia entomovirológica se realizó en 18 estados de la republica mexicana (Baja California Norte, Campeche, Chiapas, Chihuahua, Durango, Estado de México, Guerrero, Hidalgo, Jalisco, México City, Oaxaca, Puebla, Tabasco, Tamaulipas, Veracruz and Yucatán)17. Actualmente la vigilancia entomovirológica se lleva a cabo en cuatro localidades de México: Acapulco en el estado de Guerrero, Jojutla en el estado de Morelos, Tapachula en el estado de Chiapas y en el Puerto de Veracruz y Boca del Río en el estado de Veracruz 18.
 
@@ -91,12 +90,17 @@ Describir brevemente las bases de datos del vector del dengue.
 
 ## Material y Métodos
 
-
 ## Resultados
 
-El sistema opera en todo el país, y todos los estados han instalado la vigilancia entomológica con ovitrampas en al menos una localidad. Por ejemplo, en el estado de Veracruz, el sistema esta instalado en 15 localidades: Panuco, Tuxpan, Papantla, Poza Rica, Martínez de la Torre, Xalapa, Córdoba, Orizaba, Veracruz, Alvarado, Bocal del Río, Cosamaloapan, San Andrés y Coatzacoalcos. Entre 2012 y 2019, se han analizado más de 72 millones de registros de ovitrampas (72,304,515).
+El sistema de vigilancia entomológica con ovitrampas opera en todo el país y todos los estados han instalado la vigilancia entomológica con ovitrampas en al menos una localidad, excepto el estado de tlaxcala. 
 
 
 
 
 
+
+
+Por ejemplo, en el estado de Veracruz, el sistema esta instalado en 15 localidades: Panuco, Tuxpan, Papantla, Poza Rica, Martínez de la Torre, Xalapa, Córdoba, Orizaba, Veracruz, Alvarado, Bocal del Río, Cosamaloapan, San Andrés y Coatzacoalcos.
+
+Entre 2012 y 2019, 
+se han analizado más de 72 millones de registros de ovitrampas (72,304,515).
