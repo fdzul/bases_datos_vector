@@ -17,7 +17,7 @@ execute:
 
 El programa de prevención y control del dengue implementó desde el 2010 un sistema de vigilancia entomológica basado en la instalación de ovitrampas en al menos una localidad de cada estado, estos dispositivos son empleados en un muestreo sistemático carácterizado por instalar cuatro ovitrampas por manzana (una ovitrampa por cada lado de la manzana) con un intervalo de separación de cada 4 a 6 manzanas en zonas planas y con un intervalo de separación de 2 a 3 manzanas en zonas con relieve (Figura 1). Las ovitrampas se instalan en el exterior del domicilio en lugares sombreados a una altura de 1.5 metros.
 
-```{r, echo = FALSE,figura1,fig.cap= "Figura 1. Ilustración del muestreo de la vigilancia entomológica con ovitrampas en México."}
+```{r, echo = FALSE, figura1,fig.cap= "Figura 1. Ilustración del muestreo de la vigilancia entomológica con ovitrampas en México."}
 #| warning: False
 #| message: False
 #| echo: true
@@ -101,7 +101,7 @@ En el 2024, en 718 localidades se instalaron ovitrampas con la finalidad monitor
 La base de datos de la vigilancia entomológica con ovitrampas, cuenta con más de 100 millones de registros ($102,089,940$) a lo largo del periodo de estudio (2012-2024, excepto 2020, debido a que por la pandemia de COVID 19 no se instalaron las ovitrampas)
 
 
-```{r, echo=FALSE, fig.cap= "Figura 3. Número de estados, municipios y localidades con ovitrampas en México"}
+```{r, echo=FALSE, fig.cap= "Figura 3. Número de estados, municipios, localidades y ovitrampas por año"}
 # Step 1.1 load ovitraps (2012-2019)
 load("~/Library/CloudStorage/OneDrive-Personal/automatic_read_ovitraps/8.RData/ovitraps/ovitraps_2012_2019_for_encript.RData")
 
@@ -123,7 +123,8 @@ y  <- y |>
     dplyr::group_by(year) |>
     dplyr::summarise(edo = length(unique(cve_edo)),
                      mun = length(unique(cve_mpo)),
-                     loc = length(unique(cve_loc)))
+                     loc = length(unique(cve_loc)),
+                     ovitraps = length(unique(ovitrap)))
 
 x  <- x |>
     dplyr::mutate(year = lubridate::year(date)) |>
@@ -139,33 +140,8 @@ x  <- x |>
     dplyr::group_by(year) |>
     dplyr::summarise(edo = length(unique(cve_edo)),
                      mun = length(unique(cve_mpo)),
-                     loc = length(unique(cve_loc)))
-
-xy <- dplyr::bind_rows(x, y) |>
-    dplyr::filter(!is.na(year)) |>
-    dplyr::rename(Estados = edo,
-                  Municipios =mun,
-                  Localidades = loc) |>
-    tidyr::pivot_longer(cols = -year) |>
-  dplyr::mutate(name = factor(name,
-                                levels = c("Estados", "Localidades", "Municipios")[c(1, 3,2)]))
-
-
-
-
-ggplot2::ggplot(data = xy) +
-    ggplot2::geom_col(ggplot2::aes(y = value,
-                                   x = year,
-                                   fill = year)) +
-    ggplot2::facet_grid("name",
-                        scales = "free_y") +
-    ggplot2::theme(legend.position = "none") +
-    ggplot2::scale_fill_viridis_c() +
-    ggplot2::xlab("Años") +
-    ggplot2::ylab("Número")  +
-    ggplot2::scale_x_continuous(breaks = seq(from = 2011,
-                                             to = 2025,
-                                             by = 2))
+                     loc = length(unique(cve_loc)),
+                     ovitraps = length(unique(ovitrap)))
 ```
 
 
