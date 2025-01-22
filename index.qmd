@@ -92,7 +92,126 @@ Describir brevemente las bases de datos del vector del dengue.
 
 ## Resultados
 
-El sistema de vigilancia entomológica con ovitrampas opera en todo el país y todos los estados han instalado la vigilancia entomológica con ovitrampas en al menos una localidad, excepto el estado de tlaxcala. 
+El sistema de vigilancia entomológica con ovitrampas opera en todo el país y todos los estados han instalado la vigilancia entomológica con ovitrampas en al menos una localidad, excepto el estado de tlaxcala (Figura 3, Figura 4). 
+
+
+```{r echo=FALSE, fig.cap= "Numero de estado, muninicipios y localidades con ovitrampas en México"}
+# Step 1.1 load ovitraps (2012-2019)
+load("~/Library/CloudStorage/OneDrive-Personal/automatic_read_ovitraps/8.RData/ovitraps/ovitraps_2012_2019_for_encript.RData")
+
+# Step 1.2 load ovitraps (2021-2024)
+load("~/Library/CloudStorage/OneDrive-Personal/automatic_read_ovitraps/8.RData/ovitraps/ovitraps_2021_2024_for_encript.RData")
+
+
+y  <- y |>
+    dplyr::mutate(year = lubridate::year(date)) |>
+    dplyr::mutate(cve_edo = stringr::str_sub(clave,
+                                             start = 1,
+                                             end = 2),
+                  cve_mpo = stringr::str_sub(clave,
+                                             start = 1,
+                                             end = 5),
+                  cve_loc = stringr::str_sub(clave,
+                                             start = 1,
+                                             end = 9)) |>
+    dplyr::group_by(year) |>
+    dplyr::summarise(edo = length(unique(cve_edo)),
+                     mun = length(unique(cve_mpo)),
+                     loc = length(unique(cve_loc)))
+
+x  <- x |>
+    dplyr::mutate(year = lubridate::year(date)) |>
+    dplyr::mutate(cve_edo = stringr::str_sub(clave,
+                                             start = 1,
+                                             end = 2),
+                  cve_mpo = stringr::str_sub(clave,
+                                             start = 1,
+                                             end = 5),
+                  cve_loc = stringr::str_sub(clave,
+                                             start = 1,
+                                             end = 9)) |>
+    dplyr::group_by(year) |>
+    dplyr::summarise(edo = length(unique(cve_edo)),
+                     mun = length(unique(cve_mpo)),
+                     loc = length(unique(cve_loc)))
+
+xy <- dplyr::bind_rows(x, y) |>
+    dplyr::filter(!is.na(year)) |>
+    dplyr::rename(Estados = edo,
+                  Municipios =mun,
+                  Localidades = loc) |>
+    tidyr::pivot_longer(cols = -year) |>
+  dplyr::mutate(name = factor(name,
+                                levels = c("Estados", "Localidades", "Municipios")[c(1, 3,2)]))
+
+
+
+
+ggplot2::ggplot(data = xy) +
+    ggplot2::geom_col(ggplot2::aes(y = value,
+                                   x = year,
+                                   fill = year)) +
+    ggplot2::facet_grid("name",
+                        scales = "free_y") +
+    ggplot2::theme(legend.position = "none") +
+    ggplot2::scale_fill_viridis_c() +
+    ggplot2::xlab("Años") +
+    ggplot2::ylab("Número")  +
+    ggplot2::scale_x_continuous(breaks = seq(from = 2011,
+                                             to = 2025,
+                                             by = 2))
+```
+
+
+```{r, echo=FALSE, fig.cap= "Distribución de localidaes con ovitrampas en el 2024"}
+# Step 1. load ovitraps (2021-2024)
+load("~/Library/CloudStorage/OneDrive-Personal/automatic_read_ovitraps/8.RData/ovitraps/ovitraps_2021_2024_for_encript.RData")
+
+x  <- x |>
+    dplyr::mutate(year = lubridate::year(date)) |>
+    dplyr::filter(year == 2024) |>
+    dplyr::mutate(cve_edo = stringr::str_sub(clave,
+                                             start = 1,
+                                             end = 2),
+                  cve_mpo = stringr::str_sub(clave,
+                                             start = 1,
+                                             end = 5),
+                  cve_loc = stringr::str_sub(clave,
+                                             start = 1,
+                                             end = 9)) |>
+    dplyr::group_by(cve_edo, cve_mpo, cve_loc) |>
+    dplyr::summarise(ovitraps = length(unique(ovitrap)), 
+                     .groups = "drop")
+
+
+# Step 2. load the iter loc ####
+load("~/Library/CloudStorage/OneDrive-Personal/automatic_read_iter/8.RData/iter_2020_loc.RData")
+iter_2020_loc <- iter_2020_loc |>
+        dplyr::select(entidad, nom_ent,  mun,
+                      nom_mun, loc,  nom_loc,
+                      longitud, latitud, altitud,
+                      pobtot) |>
+    dplyr::mutate(cve_loc = paste(entidad, mun, loc, sep = "")) |>
+    dplyr::select(-entidad, -mun, -loc)
+
+# Step 3. left joint ####
+loc_ovitraps_coordinates <- dplyr::left_join(x = x,
+                                             y = iter_2020_loc,
+                                             by = "cve_loc") |>
+    dplyr::filter(!is.na(longitud)) |>
+    sf::st_as_sf(coords = c("longitud", "latitud"),
+                 crs = 4326)
+
+mapview::mapview(loc_ovitraps_coordinates,
+                 zcol = "ovitraps",
+                 layer.name = "Ovitrampas")
+
+```
+
+
+
+
+
 
 
 
